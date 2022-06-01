@@ -6,6 +6,7 @@ newgrp microk8s
 sudo chown -f -R $USER ~/.kube
 microk8s enable dns storage ingress metallb:10.64.140.43-10.64.140.49
 microk8s status --wait-ready
+rm -rf .local/share/juju
 sudo snap install juju --classic
 juju bootstrap microk8s
 juju deploy kubeflow-lite --trust
