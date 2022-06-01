@@ -1,4 +1,4 @@
-#!/bin/bash
+# wait for every command to finish before past the next command
 
 sudo snap install microk8s --classic --channel=1.21/stable
 sudo usermod -a -G microk8s $USER
