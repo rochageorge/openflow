@@ -6,14 +6,21 @@ newgrp microk8s
 sudo chown -f -R $USER ~/.kube
 microk8s enable dns storage ingress metallb:10.64.140.43-10.64.140.49
 microk8s status --wait-ready
-microk8s kubectl get po -A
+
+# another tab
+watch microk8s kubectl get po -A
+
 rm -rf .local/share/juju
-sudo snap install juju --classic --channel=2.9/stable
-microk8s config > ~/.kube/config
+sudo snap install juju --classic
+
 juju bootstrap microk8s
 juju add-model kubeflow
+
+# another tab
 watch -c juju status --color
+
 juju deploy kubeflow-lite --trust
+
 juju config dex-auth public-url=http://10.64.140.43.nip.io
 juju config oidc-gatekeeper public-url=http://10.64.140.43.nip.io
 juju config dex-auth static-username=admin
