@@ -11,6 +11,7 @@ rm -rf .local/share/juju
 sudo snap install juju --classic --channel=2.9/stable
 microk8s config > ~/.kube/config
 juju bootstrap microk8s
+watch -c juju status --color
 juju deploy kubeflow-lite --trust
 juju config dex-auth public-url=http://10.64.140.43.nip.io
 juju config oidc-gatekeeper public-url=http://10.64.140.43.nip.io
